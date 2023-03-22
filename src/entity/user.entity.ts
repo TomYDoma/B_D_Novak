@@ -5,30 +5,40 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { Order } from './order.entity';
-import { Discount } from './discount.entity';
+import { Application } from './application.entity';
+import { Photo } from './photo.entity';
 
 @Entity('User')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 500 })
+  @Column({
+    length: 500,
+    default: 'Имя пользователя',
+  })
   name: string;
 
   @Column({
-    default: 10,
+    length: 500,
+    default: 'Фамилия пользователя',
   })
-  age: number;
-
-  @OneToMany((type) => Order, (order) => order.User)
-  orders: Order[];
-
-  @OneToMany((type) => Discount, (dicount) => dicount.Discount)
-  Dicsount: Discount;
+  surname: string;
 
   @Column({
-    default: 'Новочеркасск',
+    length: 500,
+    default: 'Отчество пользователя',
   })
-  city: string;
+  patronymic: string;
+
+  @Column({
+    default: 'Ростовская обл., г. Новочеркасск, ул. Просвещения, 132',
+  })
+  address: string;
+
+  @OneToMany((type) => Application, (application) => application.User)
+  applications: Application[];
+
+  @OneToMany((type) => Photo, (photo) => photo.Photo)
+  Photo: Photo;
 }

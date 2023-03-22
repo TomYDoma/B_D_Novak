@@ -1,35 +1,38 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { statusOrder } from "./entity/statusOrder.entity";
+import { Spares } from './entity/spares.entity';
 import { User } from './entity/user.entity';
-import { Order } from './entity/order.entity';
-import { Discount } from "./entity/discount.entity";
-import { DiscountModule } from './DiscountModule/discount.module';
-import { UserModule } from "./UserModule/user.module";
-import { OrderModule } from "./OrderModule/order.module";
-import { StatusModule } from "./StatusModule/status.module";
+import { Application } from './entity/application.entity';
+import { Photo } from './entity/photo.entity';
+import { PhotoModule } from './PhotoModule/photo.module';
+import { UserModule } from './UserModule/user.module';
+import { ApplicationModule } from './ApplicationModule/application.module';
+import { TechnicModule } from './TechnicModule/technic.module';
+import { Technic } from './entity/technic.entity';
+import { SparesModule } from './SparesModule/spares.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'postgres',
-        entities: [Order, User, statusOrder, Discount],
+        entities: [Application, User, Technic, Photo, Spares],
         host: 'localhost',
         port: 5432,
         username: 'postgres',
         password: 'postgres',
-        database: 'labs',
+        database: 'goncharov',
         synchronize: true,
         cli: {
           entitiesDir: './entities',
         },
       }),
     }),
-    DiscountModule,
+    ApplicationModule,
+    PhotoModule,
+    SparesModule,
+    TechnicModule,
     UserModule,
-    OrderModule,
-    StatusModule,
   ],
   controllers: [],
   providers: [],

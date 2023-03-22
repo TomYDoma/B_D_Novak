@@ -2,17 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../entity/user.entity';
-import { Order } from "../entity/order.entity";
-
+import { Application } from '../entity/application.entity';
 
 @Injectable()
-export class OrderService {
+export class ApplicationService {
   constructor(
-    @InjectRepository(Order)
-    private orderRepository: Repository<Order>,
+    @InjectRepository(Application)
+    private orderRepository: Repository<Application>,
   ) {}
 
-  async findAll(): Promise<Order[]> {
+  async findAll(): Promise<Application[]> {
     return this.orderRepository.find();
   }
 
@@ -23,9 +22,9 @@ export class OrderService {
     }
   }
 
-  async create(): Promise<Order> {
+  async create(): Promise<Application> {
     return this.orderRepository.save({
-      name: 'Заказ лекарств',
+      name: 'Заказ на ремонт видеокарты',
     });
   }
 }

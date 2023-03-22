@@ -9,19 +9,23 @@ import {
 import { User } from './user.entity';
 
 @Entity()
-export class Discount {
+export class Photo {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 500 })
+  @Column({
+    default: 'Имя файла',
+  })
   name: string;
 
-  @Column()
-  discount: number;
+  @Column({
+    default: 'Путь к файлу',
+  })
+  path: string;
 
-  @ManyToOne((type) => User, (user) => user.orders)
-  Discount: Discount;
+  @ManyToOne((type) => User, (user) => user.applications)
+  Photo: Photo;
 
   @Column({ default: 2 })
-  discountId: number;
+  photoId: number;
 }

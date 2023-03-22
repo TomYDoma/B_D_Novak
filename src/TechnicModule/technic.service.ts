@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { statusOrder } from '../entity/statusOrder.entity';
+import { Technic } from '../entity/technic.entity';
 
 @Injectable()
-export class StatusService {
+export class TechnicService {
   constructor(
-    @InjectRepository(statusOrder)
-    private typeRepository: Repository<statusOrder>,
+    @InjectRepository(Technic)
+    private typeRepository: Repository<Technic>,
   ) {}
 
-  async findAll(): Promise<statusOrder[]> {
+  async findAll(): Promise<Technic[]> {
     return this.typeRepository.find();
   }
 
@@ -21,9 +21,9 @@ export class StatusService {
     }
   }
 
-  async create(): Promise<statusOrder> {
+  async create(): Promise<Technic> {
     return this.typeRepository.save({
-      name: 'Заказ добавлен в работу',
+      name: 'Техника клиента',
     });
   }
 }
