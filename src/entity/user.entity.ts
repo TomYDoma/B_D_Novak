@@ -5,39 +5,33 @@ import {
   OneToMany,
   OneToOne,
 } from 'typeorm';
-import { Application } from './application.entity';
+import { Visits } from './visits.entity';
 import { Photo } from './photo.entity';
 
-@Entity('User')
+@Entity('user')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
     length: 500,
-    default: 'Имя пользователя',
+    default: 'Иван',
   })
   name: string;
 
   @Column({
     length: 500,
-    default: 'Фамилия пользователя',
+    default: 'Иванов',
   })
   surname: string;
 
   @Column({
-    length: 500,
-    default: 'Отчество пользователя',
+    default: 'Неопределен',
   })
-  patronymic: string;
+  gender: string;
 
-  @Column({
-    default: 'Ростовская обл., г. Новочеркасск, ул. Просвещения, 132',
-  })
-  address: string;
-
-  @OneToMany((type) => Application, (application) => application.User)
-  applications: Application[];
+  @OneToMany((type) => Visits, (visit) => visit.User)
+  visits: Visits[];
 
   @OneToMany((type) => Photo, (photo) => photo.Photo)
   Photo: Photo;

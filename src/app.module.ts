@@ -1,37 +1,37 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Spares } from './entity/spares.entity';
+import { Employee } from './entity/employee.entity';
 import { User } from './entity/user.entity';
-import { Application } from './entity/application.entity';
+import { Visits } from './entity/visits.entity';
 import { Photo } from './entity/photo.entity';
 import { PhotoModule } from './PhotoModule/photo.module';
 import { UserModule } from './UserModule/user.module';
-import { ApplicationModule } from './ApplicationModule/application.module';
-import { TechnicModule } from './TechnicModule/technic.module';
-import { Technic } from './entity/technic.entity';
-import { SparesModule } from './SparesModule/spares.module';
+import { VisitsModule } from './ApplicationModule/visits.module';
+import { ServicesModule } from './ServicesModule/services.module';
+import { Services } from './entity/services.entity';
+import { EmployeeModule } from './EmployeeModule/employee.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'postgres',
-        entities: [Application, User, Technic, Photo, Spares],
+        entities: [Visits, User, Employee, Photo, Services],
         host: 'localhost',
         port: 5432,
         username: 'postgres',
         password: 'postgres',
-        database: 'goncharov',
+        database: 'novak',
         synchronize: true,
         cli: {
           entitiesDir: './entities',
         },
       }),
     }),
-    ApplicationModule,
+    VisitsModule,
     PhotoModule,
-    SparesModule,
-    TechnicModule,
+    EmployeeModule,
+    ServicesModule,
     UserModule,
   ],
   controllers: [],

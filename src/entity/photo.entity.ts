@@ -23,7 +23,7 @@ export class Photo {
   })
   path: string;
 
-  @ManyToOne((type) => User, (user) => user.applications)
+  @ManyToOne((type) => User, (user) => user.Photo)
   Photo: Photo;
 
   @Column({ default: 2 })

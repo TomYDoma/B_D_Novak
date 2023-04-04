@@ -23,9 +23,7 @@ export class UserService {
 
   async create(): Promise<User> {
     return this.userRepository.save({
-      name: 'Имя пользователя',
-      surname: 'Фамилия пользователя',
-      patronymic: 'Отчество пользователя',
+      name: 'Иван',
     });
   }
 }

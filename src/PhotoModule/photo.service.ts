@@ -7,11 +7,11 @@ import { Photo } from '../entity/photo.entity';
 export class PhotoService {
   constructor(
     @InjectRepository(Photo)
-    private discountRepository: Repository<Photo>,
+    private photoRepository: Repository<Photo>,
   ) {}
 
   async findAll(): Promise<Photo[]> {
-    return this.discountRepository.find();
+    return this.photoRepository.find();
   }
 
   async add500() {
@@ -22,7 +22,7 @@ export class PhotoService {
   }
 
   async create(): Promise<Photo> {
-    return this.discountRepository.save({
+    return this.photoRepository.save({
       name: 'Имя файла',
     });
   }
